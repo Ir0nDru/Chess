@@ -66,6 +66,18 @@ Game::Game()
         }
     }
     //adding piece
+    Pawn * p = new Pawn("BLACK");
+    Pawn * p1 = new Pawn("WHITE");
+    Knight * k1 = new Knight("BLACK");
+    Knight * k2 = new Knight("WHITE");
+    cells[0]->placeFigure(p);
+    cells[27]->placeFigure(p1);
+    cells[39]->placeFigure(k1);
+    cells[58]->placeFigure(k2);
+    addToScene(p);
+    addToScene(p1);
+    addToScene(k1);
+    addToScene(k2);
 
 }
 

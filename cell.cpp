@@ -59,8 +59,9 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
-void Cell::moveHere(Piece *p)
+void Cell::placeFigure(Piece *p)
 {
+    p->setPos(cellsize * x + offset, cellsize * y + offset);
     this->piece = p;
-    this->piece->placeFigure(this->getCoords(), this->getCellSize());
+    //this->piece->placeFigure(this->getCoords(), this->getCellSize());
 }

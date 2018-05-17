@@ -5,6 +5,8 @@
 #include <QGraphicsRectItem>
 #include <cell.h>
 #include <piece.h>
+#include <pawn.h>
+#include <knight.h>
 
 class Game: public QGraphicsView
 {

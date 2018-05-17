@@ -6,10 +6,11 @@
 class Pawn: public Piece
 {
 public:
-    Pawn();
+    Pawn(QString team);
     ~Pawn();
+    void moves();
 private:
-    void setup(QString team = "BLACK");
+    void setup();
 };
 
 #endif // PAWN_H

@@ -7,11 +7,13 @@ class Piece: public QGraphicsPixmapItem
 {
 public:
     Piece * giveIt();
-    void setup();
-    void placeFigure(int * coords, qreal cellsize);
-    virtual void move() = 0;
+    Piece(QString team);
+    //void placeFigure(int * coords, qreal cellsize);
+    virtual void moves() = 0;
 private:
-    qreal offset = 20;
+    virtual void setup() = 0;
+protected:
+    QString team;
 };
 
 #endif // PIECE_H

@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     game.cpp \
     board.cpp \
     cell.cpp \
-    pawn.cpp
+    pawn.cpp \
+    knight.cpp
 
 HEADERS  += mainwindow.h \
     piece.h \
     game.h \
     board.h \
     cell.h \
-    pawn.h
+    pawn.h \
+    knight.h
 
 FORMS    += mainwindow.ui
 

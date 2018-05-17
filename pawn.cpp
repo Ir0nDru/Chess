@@ -1,6 +1,6 @@
 #include "pawn.h"
 
-Pawn::Pawn()
+Pawn::Pawn(QString team):Piece(team)
 {
     setup();
 }
@@ -10,7 +10,12 @@ Pawn::~Pawn()
     delete this;
 }
 
-void Pawn::setup(QString team)
+void Pawn::moves()
+{
+
+}
+
+void Pawn::setup()
 {
     if (team == "BLACK"){
         setPixmap(QPixmap(":/img/pawn1.png"));

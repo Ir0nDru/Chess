@@ -14,11 +14,12 @@ public:
     int * getCoords();
     qreal getCellSize();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void moveHere(Piece * p);
+    void placeFigure(Piece * p);
 private:
     int x;
     int y;
     qreal cellsize = 100;
+    qreal offset = 70;
     QString color;
     QColor white = QColor::fromRgb(240,200,200);
     QColor black = QColor::fromRgb(80,20,20);
