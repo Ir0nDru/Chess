@@ -6,10 +6,8 @@ void Piece::setup()
 
 }
 
-void Piece::placeFigure(const Cell &cell)
+void Piece::placeFigure(int * coords, qreal cellsize)
 {
-    const int coords[2] = cell.getCoords();
-    qreal cellsize = cell.getCellSize();
     setX(cellsize * coords[0] + offset);
     setY(cellsize * coords[1] + offset);
 }

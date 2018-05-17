@@ -2,14 +2,13 @@
 #define PIECE_H
 
 #include <QGraphicsPixmapItem>
-#include <cell.h>
 
 class Piece: public QGraphicsPixmapItem
 {
 public:
     Piece * giveIt();
     void setup();
-    void placeFigure(const Cell &cell);
+    void placeFigure(int * coords, qreal cellsize);
     virtual void move() = 0;
 private:
     qreal offset = 20;

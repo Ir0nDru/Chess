@@ -4,6 +4,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QBrush>
+#include <piece.h>
 
 class Cell: public QGraphicsRectItem
 {
@@ -13,6 +14,7 @@ public:
     int * getCoords();
     qreal getCellSize();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void moveHere(Piece * p);
 private:
     int x;
     int y;
@@ -22,6 +24,7 @@ private:
     QColor black = QColor::fromRgb(80,20,20);
     QColor pressed = QColor::fromRgb(245,20,20);
     bool isClicked;
+    Piece * piece;
 };
 
 #endif // CELL_H

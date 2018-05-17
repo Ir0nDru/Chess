@@ -5,6 +5,7 @@ Cell::Cell()
 {
     x = 0;
     y = 0;
+    piece = NULL;
     isClicked = false;
     setRect(0, 0, cellsize, cellsize);
     //setPen(Qt::black);
@@ -16,6 +17,7 @@ Cell::Cell(int posX, int posY, QString cellColor, qreal startSpaceX, qreal start
 {
     x = posX;
     y = posY;
+    piece = NULL;
     isClicked = false;
     setRect(startSpaceX + cellsize * posX, startSpaceY + cellsize * posY, cellsize, cellsize);
     cellColor = cellColor.toUpper();
@@ -31,7 +33,7 @@ Cell::Cell(int posX, int posY, QString cellColor, qreal startSpaceX, qreal start
 
 int *Cell::getCoords()
 {
-    int temp[] = {x, y};
+    int temp[] = {x,y};
     return temp;
 }
 
@@ -55,4 +57,10 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
         isClicked = true;
         setBrush(pressed);
     }
+}
+
+void Cell::moveHere(Piece *p)
+{
+    this->piece = p;
+    this->piece->placeFigure(this->getCoords(), this->getCellSize());
 }
