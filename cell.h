@@ -16,6 +16,7 @@ public:
     QString getColor();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void placeFigure(Piece * p);
+    void replaceFigure();
     void removeFigure();
     void highlight();
     void lightOff();

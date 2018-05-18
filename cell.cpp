@@ -110,6 +110,11 @@ void Cell::placeFigure(Piece *p)
     //this->piece->placeFigure(this->getCoords(), this->getCellSize());
 }
 
+void Cell::replaceFigure()
+{
+    this->piece = NULL;
+}
+
 void Cell::removeFigure()
 {
     //TODO: add memory clearance
@@ -143,12 +148,12 @@ void Cell::move(Cell *cell)
     if (this->hasPiece()){
         this->removeFigure();
         this->placeFigure(cell->piece);
-        cell->removeFigure();
+        cell->replaceFigure();
         cell->lightOff();
     }
     else{
         this->placeFigure(cell->piece);
-        cell->removeFigure();
+        cell->replaceFigure();
         cell->lightOff();
     }
 }
