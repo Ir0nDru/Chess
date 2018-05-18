@@ -76,7 +76,7 @@ Game::Game()
     Queen * queen = new Queen("BLACK");
     Knight * knight = new Knight("BLACK");
     Rook * rook = new Rook("WHITE");
-    cells[0]->placeFigure(pawn);
+    cells[10]->placeFigure(pawn);
     cells[1]->placeFigure(bishop);
     cells[39]->placeFigure(king);
     cells[58]->placeFigure(queen);

@@ -7,7 +7,7 @@ Pawn::Pawn(QString team):Piece(team)
 
 Pawn::~Pawn()
 {
-    delete this;
+
 }
 
 void Pawn::moves()
