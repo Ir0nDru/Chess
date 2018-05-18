@@ -2,7 +2,12 @@
 
 Piece::Piece(QString team)
 {
-    this->team = team;
+    this->team = team.toUpper();
+}
+
+QString Piece::getTeam()
+{
+    return team.toUpper();
 }
 
 //void Piece::setup()

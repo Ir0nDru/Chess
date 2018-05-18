@@ -8,6 +8,7 @@ class Piece: public QGraphicsPixmapItem
 public:
     Piece * giveIt();
     Piece(QString team);
+    QString getTeam();
     //void placeFigure(int * coords, qreal cellsize);
     virtual void moves() = 0;
 private:

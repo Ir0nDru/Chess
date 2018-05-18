@@ -15,9 +15,15 @@ public:
     Game();
     void addToScene(QGraphicsItem * item);
     void removeFromScene(QGraphicsItem * item);
+    void setSelectedFrom(Cell * cell); //there are setters and getters for cells that we are going to press
+    void setSelectedTo(Cell * cell);
+    Cell * getSelectedFrom();
+    Cell * getSelectedTo();
 private:
     QGraphicsScene * scene;
     QList <Cell *> cells;
+    Cell * goFrom;
+    Cell * goTo;
 };
 
 #endif // GAME_H

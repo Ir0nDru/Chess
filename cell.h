@@ -13,8 +13,14 @@ public:
     Cell(int posX, int posY, QString cellColor="", qreal startSpaceX = 50, qreal startSpaceY = 50);
     int * getCoords();
     qreal getCellSize();
+    QString getColor();
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void placeFigure(Piece * p);
+    void removeFigure();
+    void highlight();
+    void lightOff();
+    void move(Cell * cell);
+    bool hasPiece();
 private:
     int x;
     int y;
@@ -26,6 +32,7 @@ private:
     QColor pressed = QColor::fromRgb(245,20,20);
     bool isClicked;
     Piece * piece;
+    static bool waitingTurn; //global variable shows whether any cell is selected at the moment
 };
 
 #endif // CELL_H

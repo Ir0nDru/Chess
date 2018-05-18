@@ -1,6 +1,8 @@
 #include "cell.h"
+#include "game.h"
 #include <QDebug>
 
+extern Game * game;
 Cell::Cell()
 {
     x = 0;
@@ -42,21 +44,63 @@ qreal Cell::getCellSize()
     return cellsize;
 }
 
+QString Cell::getColor()
+{
+    return this->color;
+}
+
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    //qDebug() << brush().color().rgb();
-    if(color == "WHITE" && isClicked == true){
-        isClicked = false;
-        setBrush(white);
+    if (!waitingTurn){
+        //get cell with piece
+        //TODO: add check for which side piece is on
+        if (this->piece != NULL){
+            game->setSelectedFrom(this);
+            this->highlight();
+            waitingTurn = true;
+        }
     }
-    else if(color == "BLACK" && isClicked == true){
-        isClicked = false;
-        setBrush(black);
+    else{
+        //if same cell then off
+        if (game->getSelectedFrom() == this){
+            game->setSelectedFrom(NULL);
+            this->lightOff();
+        }
+        //else move
+        //TODO: check path variants and possible ally units to step on
+        else{
+            move(game->getSelectedFrom());
+            //this->lightOff();
+        }
+        waitingTurn = false;
     }
-    else if((color == "BLACK" || color == "WHITE") && isClicked == false){
-        isClicked = true;
-        setBrush(pressed);
-    }
+
+
+//    if (this->piece != NULL && !waitingTurn){
+//        waitingTurn = true;
+//        //Color cell
+//        //qDebug() << brush().color().rgb();
+//        if(color == "WHITE" && isClicked == true){
+//            isClicked = false;
+//            setBrush(white);
+//        }
+//        else if(color == "BLACK" && isClicked == true){
+//            isClicked = false;
+//            setBrush(black);
+//        }
+//        else if((color == "BLACK" || color == "WHITE") && isClicked == false){
+//            isClicked = true;
+//            setBrush(pressed);
+//        }
+//    }
+//    else if(waitingTurn){
+//        waitingTurn = false;
+//        if((color == "BLACK" || color == "WHITE") && isClicked == false){
+//                    isClicked = true;
+//                    setBrush(pressed);
+//                }
+//    }
+    qDebug() << waitingTurn;
 }
 
 void Cell::placeFigure(Piece *p)
@@ -65,3 +109,57 @@ void Cell::placeFigure(Piece *p)
     this->piece = p;
     //this->piece->placeFigure(this->getCoords(), this->getCellSize());
 }
+
+void Cell::removeFigure()
+{
+    //TODO: add memory clearance
+    this->piece = NULL;
+}
+
+void Cell::highlight()
+{
+    if(color == "BLACK" || color == "WHITE"){
+        //isClicked = true;
+        setBrush(pressed);
+    }
+}
+
+void Cell::lightOff()
+{
+    qDebug() << getColor();
+    if(getColor() == "WHITE"){
+        //isClicked = false;
+        setBrush(white);
+    }
+    else if(getColor() == "BLACK"){
+        //isClicked = false;
+        setBrush(black);
+    }
+}
+
+void Cell::move(Cell *cell)
+{
+    if (this->hasPiece()){
+        this->removeFigure();
+        this->placeFigure(cell->piece);
+        cell->removeFigure();
+        cell->lightOff();
+    }
+    else{
+        this->placeFigure(cell->piece);
+        cell->removeFigure();
+        cell->lightOff();
+    }
+}
+
+bool Cell::hasPiece()
+{
+    if (this->piece != NULL){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+//int Cell::waitingTurn = false;

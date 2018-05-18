@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+Game * game;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,7 +22,7 @@ void MainWindow::on_exitButton_clicked()
 
 void MainWindow::on_playButton_clicked()
 {
-    Game * game = new Game();
+    game = new Game();
     game->show();
     this->close();
 }

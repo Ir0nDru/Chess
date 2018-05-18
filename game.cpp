@@ -2,9 +2,13 @@
 #include <QDesktopWidget>
 #include <iostream>
 
+bool Cell::waitingTurn = false;
 
 Game::Game()
 {
+    goFrom = NULL;
+    goTo = NULL;
+
     setFocusPolicy(Qt::StrongFocus);
     setFixedSize(900, 900);
 
@@ -89,4 +93,24 @@ void Game::addToScene(QGraphicsItem *item)
 void Game::removeFromScene(QGraphicsItem *item)
 {
     scene->removeItem(item);
+}
+
+void Game::setSelectedFrom(Cell *cell)
+{
+    goFrom = cell;
+}
+
+void Game::setSelectedTo(Cell *cell)
+{
+    goTo = cell;
+}
+
+Cell *Game::getSelectedFrom()
+{
+    return goFrom;
+}
+
+Cell *Game::getSelectedTo()
+{
+    return goTo;
 }
