@@ -119,8 +119,8 @@ void Cell::replaceFigure()
 void Cell::removeFigure()
 {
     //TODO: add memory clearance
-    //this->piece = NULL;
     delete this->piece;
+    this->piece = NULL;
 }
 
 void Cell::highlight()
