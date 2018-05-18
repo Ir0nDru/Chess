@@ -8,7 +8,7 @@ class Rook : public Piece
 public:
     Rook(QString team);
     ~Rook();
-    void moves();
+    QList<int*> moves();
 private:
     void setup();
 };

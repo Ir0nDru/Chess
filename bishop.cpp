@@ -10,7 +10,7 @@ Bishop::~Bishop()
 
 }
 
-void Bishop::moves()
+QList<int *> Bishop::moves()
 {
 
 }

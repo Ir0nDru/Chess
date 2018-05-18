@@ -8,7 +8,7 @@ class Pawn: public Piece
 public:
     Pawn(QString team);
     ~Pawn();
-    void moves();
+    QList<int *> moves();
 private:
     void setup();
 };

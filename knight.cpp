@@ -10,7 +10,7 @@ Knight::~Knight()
 
 }
 
-void Knight::moves()
+QList<int *> Knight::moves()
 {
 
 }

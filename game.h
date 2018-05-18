@@ -23,11 +23,15 @@ public:
     void setSelectedTo(Cell * cell);
     Cell * getSelectedFrom();
     Cell * getSelectedTo();
+    QList<Piece*> getWhiteTeam();
+    QList<Piece*> getBlackTeam();
 private:
     QGraphicsScene * scene;
     QList <Cell *> cells;
     Cell * goFrom;
     Cell * goTo;
+    QList <Piece*> whiteTeam;
+    QList <Piece*> blackTeam;
 };
 
 #endif // GAME_H

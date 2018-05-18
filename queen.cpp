@@ -10,7 +10,7 @@ Queen::~Queen()
 
 }
 
-void Queen::moves()
+QList<int *> Queen::moves()
 {
 
 }

@@ -8,7 +8,7 @@ class Queen : public Piece
 public:
     Queen(QString team);
     ~Queen();
-    void moves();
+    QList<int*> moves();
 private:
     void setup();
 };

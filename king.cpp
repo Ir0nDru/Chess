@@ -10,7 +10,7 @@ King::~King()
 
 }
 
-void King::moves()
+QList<int *> King::moves()
 {
 
 }

@@ -9,11 +9,15 @@ public:
     Piece * giveIt();
     Piece(QString team);
     QString getTeam();
-    //void placeFigure(int * coords, qreal cellsize);
-    virtual void moves() = 0;
+    virtual QList<int*> moves() = 0;
+    void setCoords(int x,int y);
+    void incTurn();
+    int x;
+    int y;
 private:
     virtual void setup() = 0;
 protected:
+    int turn;
     QString team;
 };
 

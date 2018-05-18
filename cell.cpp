@@ -105,6 +105,7 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void Cell::placeFigure(Piece *p)
 {
+    p->setCoords(x,y);
     p->setPos(cellsize * x + offset, cellsize * y + offset);
     this->piece = p;
     //this->piece->placeFigure(this->getCoords(), this->getCellSize());
@@ -156,6 +157,7 @@ void Cell::move(Cell *cell)
         cell->replaceFigure();
         cell->lightOff();
     }
+    this->piece->incTurn();
 }
 
 bool Cell::hasPiece()

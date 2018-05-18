@@ -10,7 +10,7 @@ Rook::~Rook()
 
 }
 
-void Rook::moves()
+QList<int*> Rook::moves()
 {
 
 }

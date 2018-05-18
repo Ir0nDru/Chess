@@ -82,6 +82,17 @@ Game::Game()
     cells[58]->placeFigure(queen);
     cells[47]->placeFigure(knight);
     cells[60]->placeFigure(rook);
+
+
+    blackTeam.append(pawn);
+    blackTeam.append(bishop);
+    blackTeam.append(queen);
+    blackTeam.append(knight);
+
+    whiteTeam.append(king);
+    whiteTeam.append(rook);
+
+
     addToScene(pawn);
     addToScene(bishop);
     addToScene(king);
@@ -121,4 +132,13 @@ Cell *Game::getSelectedTo()
     return goTo;
 }
 
+QList<Piece *> Game::getWhiteTeam()
+{
+    return this->whiteTeam;
+}
+
+QList<Piece *> Game::getBlackTeam()
+{
+    return this->blackTeam;
+}
 
