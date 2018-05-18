@@ -7,6 +7,10 @@
 #include <piece.h>
 #include <pawn.h>
 #include <knight.h>
+#include <bishop.h>
+#include <king.h>
+#include <queen.h>
+#include <rook.h>
 
 class Game: public QGraphicsView
 {

@@ -113,7 +113,8 @@ void Cell::placeFigure(Piece *p)
 void Cell::removeFigure()
 {
     //TODO: add memory clearance
-    this->piece = NULL;
+    //this->piece = NULL;
+    delete this->piece;
 }
 
 void Cell::highlight()
@@ -161,5 +162,6 @@ bool Cell::hasPiece()
         return false;
     }
 }
+
 
 //int Cell::waitingTurn = false;

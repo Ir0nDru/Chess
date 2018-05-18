@@ -19,7 +19,11 @@ SOURCES += main.cpp\
     board.cpp \
     cell.cpp \
     pawn.cpp \
-    knight.cpp
+    knight.cpp \
+    rook.cpp \
+    bishop.cpp \
+    king.cpp \
+    queen.cpp
 
 HEADERS  += mainwindow.h \
     piece.h \
@@ -27,7 +31,11 @@ HEADERS  += mainwindow.h \
     board.h \
     cell.h \
     pawn.h \
-    knight.h
+    knight.h \
+    rook.h \
+    bishop.h \
+    king.h \
+    queen.h
 
 FORMS    += mainwindow.ui
 

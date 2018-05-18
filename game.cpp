@@ -70,18 +70,24 @@ Game::Game()
         }
     }
     //adding piece
-    Pawn * p = new Pawn("BLACK");
-    Pawn * p1 = new Pawn("WHITE");
-    Knight * k1 = new Knight("BLACK");
-    Knight * k2 = new Knight("WHITE");
-    cells[0]->placeFigure(p);
-    cells[27]->placeFigure(p1);
-    cells[39]->placeFigure(k1);
-    cells[58]->placeFigure(k2);
-    addToScene(p);
-    addToScene(p1);
-    addToScene(k1);
-    addToScene(k2);
+    Pawn * pawn = new Pawn("BLACK");
+    Bishop * bishop = new Bishop("BLACK");
+    King * king = new King("WHITE");
+    Queen * queen = new Queen("BLACK");
+    Knight * knight = new Knight("BLACK");
+    Rook * rook = new Rook("WHITE");
+    cells[0]->placeFigure(pawn);
+    cells[1]->placeFigure(bishop);
+    cells[39]->placeFigure(king);
+    cells[58]->placeFigure(queen);
+    cells[47]->placeFigure(knight);
+    cells[60]->placeFigure(rook);
+    addToScene(pawn);
+    addToScene(bishop);
+    addToScene(king);
+    addToScene(queen);
+    addToScene(knight);
+    addToScene(rook);
 
 }
 
@@ -114,3 +120,5 @@ Cell *Game::getSelectedTo()
 {
     return goTo;
 }
+
+
