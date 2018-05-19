@@ -18,9 +18,9 @@ QList<int *> Queen::moves()
 void Queen::setup()
 {
     if (team == "BLACK"){
-        setPixmap(QPixmap(":/img/queen1.png"));
+        setPixmap(QPixmap(":/img/sprites/queen1.png"));
     }
     else{
-        setPixmap(QPixmap(":/img/queen2.png"));
+        setPixmap(QPixmap(":/img/sprites/queen2.png"));
     }
 }

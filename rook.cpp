@@ -18,9 +18,9 @@ QList<int*> Rook::moves()
 void Rook::setup()
 {
     if (team == "BLACK"){
-        setPixmap(QPixmap(":/img/rook1.png"));
+        setPixmap(QPixmap(":/img/sprites/rook1.png"));
     }
     else{
-        setPixmap(QPixmap(":/img/rook2.png"));
+        setPixmap(QPixmap(":/img/sprites/rook2.png"));
     }
 }

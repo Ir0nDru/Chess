@@ -88,9 +88,9 @@ QList<int*> Pawn::moves()
 void Pawn::setup()
 {
     if (team == "BLACK"){
-        setPixmap(QPixmap(":/img/pawn1.png"));
+        setPixmap(QPixmap(":/img/sprites/pawn1.png"));
     }
     else{
-        setPixmap(QPixmap(":/img/pawn2.png"));
+        setPixmap(QPixmap(":/img/sprites/pawn2.png"));
     }
 }

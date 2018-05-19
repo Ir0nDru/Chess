@@ -18,9 +18,9 @@ QList<int *> King::moves()
 void King::setup()
 {
     if (team == "BLACK"){
-        setPixmap(QPixmap(":/img/king1.png"));
+        setPixmap(QPixmap(":/img/sprites/king1.png"));
     }
     else{
-        setPixmap(QPixmap(":/img/king2.png"));
+        setPixmap(QPixmap(":/img/sprites/king2.png"));
     }
 }

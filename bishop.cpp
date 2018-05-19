@@ -18,9 +18,9 @@ QList<int *> Bishop::moves()
 void Bishop::setup()
 {
     if (team == "BLACK"){
-        setPixmap(QPixmap(":/img/bishop1.png"));
+        setPixmap(QPixmap(":/img/sprites/bishop1.png"));
     }
     else{
-        setPixmap(QPixmap(":/img/bishop2.png"));
+        setPixmap(QPixmap(":/img/sprites/bishop2.png"));
     }
 }
