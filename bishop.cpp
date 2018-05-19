@@ -10,9 +10,10 @@ Bishop::~Bishop()
 
 }
 
-QList<int *> Bishop::moves()
+QList<QPair<int, int> > Bishop::moves()
 {
-
+    QList<QPair<int, int>> coords;
+    return coords;
 }
 
 void Bishop::setup()

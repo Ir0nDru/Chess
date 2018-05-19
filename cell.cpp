@@ -65,14 +65,15 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
         if (game->getSelectedFrom() == this){
             game->setSelectedFrom(NULL);
             this->lightOff();
+            waitingTurn = false;
         }
-        //else move
-        //TODO: check path variants and possible ally units to step on
+        //else move    
         else{
-            move(game->getSelectedFrom());
-            //this->lightOff();
+            if (moveIsPossible()){
+                move(game->getSelectedFrom());
+                waitingTurn = false;
+            }
         }
-        waitingTurn = false;
     }
 
 
@@ -100,7 +101,7 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 //                    setBrush(pressed);
 //                }
 //    }
-    qDebug() << waitingTurn;
+    //qDebug() << waitingTurn;
 }
 
 void Cell::placeFigure(Piece *p)
@@ -133,7 +134,7 @@ void Cell::highlight()
 
 void Cell::lightOff()
 {
-    qDebug() << getColor();
+    //qDebug() << getColor();
     if(getColor() == "WHITE"){
         //isClicked = false;
         setBrush(white);
@@ -170,5 +171,16 @@ bool Cell::hasPiece()
     }
 }
 
+bool Cell::moveIsPossible()
+{
+    bool possibility = false;
+    QList<QPair<int, int>> possibleMoves = game->getSelectedFrom()->piece->moves();
+    for (int i = 0; i < possibleMoves.length() && !possibility; i++){
+        qDebug() << possibleMoves[i].first << possibleMoves[i].second;
+        if(this->x == possibleMoves[i].first && this->y == possibleMoves[i].second){
+            possibility = true;
+        }
+    }
+    return possibility;
+}
 
-//int Cell::waitingTurn = false;

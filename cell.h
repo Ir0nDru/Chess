@@ -22,6 +22,7 @@ public:
     void lightOff();
     void move(Cell * cell);
     bool hasPiece();
+    bool moveIsPossible();
 private:
     int x;
     int y;

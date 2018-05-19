@@ -10,9 +10,10 @@ King::~King()
 
 }
 
-QList<int *> King::moves()
+QList<QPair<int, int> > King::moves()
 {
-
+    QList<QPair<int, int>> coords;
+    return coords;
 }
 
 void King::setup()

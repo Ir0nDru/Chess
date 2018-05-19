@@ -10,9 +10,10 @@ Knight::~Knight()
 
 }
 
-QList<int *> Knight::moves()
+QList<QPair<int, int> > Knight::moves()
 {
-
+    QList<QPair<int, int>> coords;
+    return coords;
 }
 
 void Knight::setup()

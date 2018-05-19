@@ -13,11 +13,11 @@ Pawn::~Pawn()
 
 }
 
-QList<int*> Pawn::moves()
+QList<QPair<int, int> > Pawn::moves()
 {
     QList<Piece*> whiteTeam = game->getWhiteTeam();
     QList<Piece*> blackTeam = game->getBlackTeam();
-    QList<int*> coords;
+    QList<QPair<int, int>> coords;
     int k;
     if(turn == 0){
         k = 2;
@@ -27,7 +27,7 @@ QList<int*> Pawn::moves()
     }
     bool isClear = true;
     if(team == "WHITE"){
-        for(int i = y-1; i < y-k && i>=0 && isClear; i--){
+        for(int i = y-1; i >= y-k && i>=0 && isClear; i--){
             foreach(Piece* p, whiteTeam){
                 if(i == p->y && x == p->x){
                     isClear = false;
@@ -39,23 +39,31 @@ QList<int*> Pawn::moves()
                 }
             }
             if(isClear){
-                int temp[] = {x,i};
+                QPair<int,int> temp;
+                temp.first = x;
+                temp.second = i;
                 coords.append(temp);
             }
         }
         foreach(Piece* p, blackTeam){
             if(y-1 == p->y && x-1 == p->x){
-                int temp[] = {p->x,p->y};
+                //int temp[] = {p->x,p->y};
+                QPair<int,int> temp;
+                temp.first = p->x;
+                temp.second = p->y;
                 coords.append(temp);
             }
             if(y-1 == p->y && x+1 == p->x){
-                int temp[] = {p->x,p->y};
+                //int temp[] = {p->x,p->y};
+                QPair<int,int> temp;
+                temp.first = p->x;
+                temp.second = p->y;
                 coords.append(temp);
             }
         }
     }
     else{
-        for(int i = y+1; i < y+k && i<=7 && isClear; i++){
+        for(int i = y+1; i <= y+k && i <= 7 && isClear; i++){
             foreach(Piece* p, whiteTeam){
                 if(i == p->y && x == p->x){
                     isClear = false;
@@ -67,17 +75,26 @@ QList<int*> Pawn::moves()
                 }
             }
             if(isClear){
-                int temp[] = {x,i};
+                //int temp[] = {x,i};
+                QPair<int,int> temp;
+                temp.first = x;
+                temp.second = i;
                 coords.append(temp);
             }
         }
         foreach(Piece* p, blackTeam){
             if(y+1 == p->y && x-1 == p->x){
-                int temp[] = {p->x,p->y};
+                //int temp[] = {p->x,p->y};
+                QPair<int,int> temp;
+                temp.first = p->x;
+                temp.second = p->y;
                 coords.append(temp);
             }
             if(y+1 == p->y && x+1 == p->x){
-                int temp[] = {p->x,p->y};
+                //int temp[] = {p->x,p->y};
+                QPair<int,int> temp;
+                temp.first = p->x;
+                temp.second = p->y;
                 coords.append(temp);
             }
         }

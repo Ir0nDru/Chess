@@ -8,7 +8,7 @@ class Knight : public Piece
 public:
     Knight(QString team);
     ~Knight();
-    QList<int*> moves();
+    QList<QPair<int, int>> moves();
 private:
     void setup();
 };

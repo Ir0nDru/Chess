@@ -8,7 +8,7 @@ class Bishop : public Piece
 public:
     Bishop(QString team);
     ~Bishop();
-    QList<int*> moves();
+    QList<QPair<int, int>> moves();
 private:
     void setup();
 };

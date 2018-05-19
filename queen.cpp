@@ -10,9 +10,10 @@ Queen::~Queen()
 
 }
 
-QList<int *> Queen::moves()
+QList<QPair<int, int> > Queen::moves()
 {
-
+    QList<QPair<int, int>> coords;
+    return coords;
 }
 
 void Queen::setup()

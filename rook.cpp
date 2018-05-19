@@ -10,9 +10,10 @@ Rook::~Rook()
 
 }
 
-QList<int*> Rook::moves()
+QList<QPair<int, int> > Rook::moves()
 {
-
+    QList<QPair<int, int>> coords;
+    return coords;
 }
 
 void Rook::setup()

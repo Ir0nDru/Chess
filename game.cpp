@@ -70,25 +70,25 @@ Game::Game()
         }
     }
     //adding piece
-    Pawn * pawn = new Pawn("BLACK");
+    Pawn * pawn = new Pawn("WHITE");
     Bishop * bishop = new Bishop("BLACK");
     King * king = new King("WHITE");
     Queen * queen = new Queen("BLACK");
     Knight * knight = new Knight("BLACK");
     Rook * rook = new Rook("WHITE");
-    cells[10]->placeFigure(pawn);
+    cells[26]->placeFigure(pawn);
     cells[1]->placeFigure(bishop);
     cells[39]->placeFigure(king);
-    cells[58]->placeFigure(queen);
-    cells[47]->placeFigure(knight);
+    cells[19]->placeFigure(queen);
+    cells[17]->placeFigure(knight);
     cells[60]->placeFigure(rook);
 
 
-    blackTeam.append(pawn);
     blackTeam.append(bishop);
     blackTeam.append(queen);
     blackTeam.append(knight);
 
+    whiteTeam.append(pawn);
     whiteTeam.append(king);
     whiteTeam.append(rook);
 
