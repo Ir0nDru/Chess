@@ -11,6 +11,7 @@ public:
     QList<QPair<int, int>> moves();
 private:
     void setup();
+    bool freeToMove(int x, int y, QList<Piece*> pieces);
 };
 
 #endif // KNIGHT_H
