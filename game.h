@@ -25,13 +25,14 @@ public:
     Cell * getSelectedTo();
     QList<Piece*> getWhiteTeam();
     QList<Piece*> getBlackTeam();
+    //Little feature or hack that ruines all architecture but program doesn't crush anymore (KLUDGE)
+    QList <Piece*> whiteTeam;
+    QList <Piece*> blackTeam;
 private:
     QGraphicsScene * scene;
     QList <Cell *> cells;
     Cell * goFrom;
     Cell * goTo;
-    QList <Piece*> whiteTeam;
-    QList <Piece*> blackTeam;
 };
 
 #endif // GAME_H

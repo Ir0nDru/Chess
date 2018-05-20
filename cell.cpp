@@ -52,13 +52,18 @@ QString Cell::getColor()
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (!waitingTurn){
-        //get cell with piece
-        //TODO: add check for which side piece is on
-        if (this->piece != NULL){
-            game->setSelectedFrom(this);
-            this->highlight();
-            waitingTurn = true;
+    //get cell with piece
+    //TODO: add check for which side piece is on
+    if (this->piece != NULL){
+        QList<QPair<int, int>> possibleMoves = piece->moves();
+        qDebug() << "==============================";
+        for (int i = 0; i < possibleMoves.length(); i++){
+            qDebug() << i << ":" << possibleMoves[i].first << possibleMoves[i].second;
         }
+        game->setSelectedFrom(this);
+        this->highlight();
+        waitingTurn = true;
+    }
     }
     else{
         //if same cell then off
@@ -67,7 +72,7 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
             this->lightOff();
             waitingTurn = false;
         }
-        //else move    
+        //else move
         else{
             if (moveIsPossible()){
                 move(game->getSelectedFrom());
@@ -75,33 +80,6 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
         }
     }
-
-
-//    if (this->piece != NULL && !waitingTurn){
-//        waitingTurn = true;
-//        //Color cell
-//        //qDebug() << brush().color().rgb();
-//        if(color == "WHITE" && isClicked == true){
-//            isClicked = false;
-//            setBrush(white);
-//        }
-//        else if(color == "BLACK" && isClicked == true){
-//            isClicked = false;
-//            setBrush(black);
-//        }
-//        else if((color == "BLACK" || color == "WHITE") && isClicked == false){
-//            isClicked = true;
-//            setBrush(pressed);
-//        }
-//    }
-//    else if(waitingTurn){
-//        waitingTurn = false;
-//        if((color == "BLACK" || color == "WHITE") && isClicked == false){
-//                    isClicked = true;
-//                    setBrush(pressed);
-//                }
-//    }
-    //qDebug() << waitingTurn;
 }
 
 void Cell::placeFigure(Piece *p)
@@ -120,8 +98,25 @@ void Cell::replaceFigure()
 void Cell::removeFigure()
 {
     //TODO: add memory clearance
+    QList<Piece *> pieces = game->getWhiteTeam() + game->getBlackTeam();
+    foreach (Piece * piece, pieces) {
+        qDebug() << piece;
+    }
+    qDebug() << "==========";
+    qDebug() << this->piece;
+    if (this->piece->getTeam() == "WHITE"){
+        game->whiteTeam.removeOne(this->piece);
+    }
+    else{
+        game->blackTeam.removeOne(this->piece);
+    }
     delete this->piece;
     this->piece = NULL;
+    pieces = game->getWhiteTeam() + game->getBlackTeam();
+    foreach (Piece * piece, pieces) {
+        qDebug() << piece;
+    }
+    qDebug() << "==========";
 }
 
 void Cell::highlight()
@@ -171,12 +166,13 @@ bool Cell::hasPiece()
     }
 }
 
-bool Cell::moveIsPossible()
+bool Cell::moveIsPossible() //check if this cell's coords are in possible movement coords
 {
     bool possibility = false;
     QList<QPair<int, int>> possibleMoves = game->getSelectedFrom()->piece->moves();
+    //qDebug() << "==============================";
     for (int i = 0; i < possibleMoves.length() && !possibility; i++){
-        qDebug() << possibleMoves[i].first << possibleMoves[i].second;
+        //qDebug() << possibleMoves[i].first << possibleMoves[i].second;
         if(this->x == possibleMoves[i].first && this->y == possibleMoves[i].second){
             possibility = true;
         }
