@@ -55,11 +55,11 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
     //get cell with piece
     //TODO: add check for which side piece is on
     if (this->piece != NULL){
-        QList<QPair<int, int>> possibleMoves = piece->moves();
-        qDebug() << "==============================";
-        for (int i = 0; i < possibleMoves.length(); i++){
-            qDebug() << i << ":" << possibleMoves[i].first << possibleMoves[i].second;
-        }
+//        QList<QPair<int, int>> possibleMoves = piece->moves();
+//        qDebug() << "==============================";
+//        for (int i = 0; i < possibleMoves.length(); i++){
+//            qDebug() << i << ":" << possibleMoves[i].first << possibleMoves[i].second;
+//        }
         game->setSelectedFrom(this);
         this->highlight();
         waitingTurn = true;
@@ -99,11 +99,6 @@ void Cell::removeFigure()
 {
     //TODO: add memory clearance
     QList<Piece *> pieces = game->getWhiteTeam() + game->getBlackTeam();
-    foreach (Piece * piece, pieces) {
-        qDebug() << piece;
-    }
-    qDebug() << "==========";
-    qDebug() << this->piece;
     if (this->piece->getTeam() == "WHITE"){
         game->whiteTeam.removeOne(this->piece);
     }
@@ -113,10 +108,6 @@ void Cell::removeFigure()
     delete this->piece;
     this->piece = NULL;
     pieces = game->getWhiteTeam() + game->getBlackTeam();
-    foreach (Piece * piece, pieces) {
-        qDebug() << piece;
-    }
-    qDebug() << "==========";
 }
 
 void Cell::highlight()
