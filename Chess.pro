@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     rook.cpp \
     bishop.cpp \
     king.cpp \
-    queen.cpp
+    queen.cpp \
+    gameover.cpp
 
 HEADERS  += mainwindow.h \
     piece.h \
@@ -35,9 +36,11 @@ HEADERS  += mainwindow.h \
     rook.h \
     bishop.h \
     king.h \
-    queen.h
+    queen.h \
+    gameover.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    gameover.ui
 
 RESOURCES += \
     img.qrc

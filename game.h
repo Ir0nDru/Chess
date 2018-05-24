@@ -11,6 +11,7 @@
 #include <king.h>
 #include <queen.h>
 #include <rook.h>
+#include <gameover.h>
 #include <QDebug>
 
 class Game: public QGraphicsView
@@ -20,10 +21,8 @@ public:
     Game();
     void addToScene(QGraphicsItem * item);
     void removeFromScene(QGraphicsItem * item);
-    void setSelectedFrom(Cell * cell); //there are setters and getters for cells that we are going to press
-    void setSelectedTo(Cell * cell);
+    void setSelectedFrom(Cell * cell); //there are setter and getter for cells that we are going to press
     Cell * getSelectedFrom();
-    Cell * getSelectedTo();
     QList<Piece*> getWhiteTeam();
     QList<Piece*> getBlackTeam();
     //Little feature or hack that ruines all architecture but program doesn't crush anymore (KLUDGE)
@@ -34,11 +33,11 @@ public:
     void changeTurn();
 private:
     QGraphicsScene * scene;
-    QList <Cell *> cells;
+    QList <Cell *>  cells;
     Cell * goFrom;
-    Cell * goTo;
     QString turn;
     QGraphicsTextItem  * turnTable;
+    void gameover();
 };
 
 #endif // GAME_H

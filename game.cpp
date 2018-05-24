@@ -7,7 +7,6 @@ bool Cell::waitingTurn = false;
 Game::Game()
 {
     goFrom = NULL;
-    goTo = NULL;
     turn = "WHITE";
 
     setFocusPolicy(Qt::StrongFocus);
@@ -128,19 +127,9 @@ void Game::setSelectedFrom(Cell *cell)
     goFrom = cell;
 }
 
-void Game::setSelectedTo(Cell *cell)
-{
-    goTo = cell;
-}
-
 Cell *Game::getSelectedFrom()
 {
     return goFrom;
-}
-
-Cell *Game::getSelectedTo()
-{
-    return goTo;
 }
 
 QList<Piece *> Game::getWhiteTeam()
@@ -169,6 +158,8 @@ void Game::checkVictory()
     }
     if(!hasKing){
         qDebug() << "white lost";
+        gameover();
+        //break;
     }
     hasKing = false;
     foreach(Piece * piece, blackTeam){
@@ -179,6 +170,7 @@ void Game::checkVictory()
     }
     if(!hasKing){
         qDebug() << "black lost";
+        gameover();
     }
 }
 
@@ -193,5 +185,24 @@ void Game::changeTurn()
         turnTable->setDefaultTextColor(QColor::fromRgb(255, 255, 255));
     }
     turnTable->setPlainText(QString("TURN: " + turn));
+}
+
+void Game::gameover()
+{
+    //piece of shit
+//    foreach(Piece * piece, blackTeam){
+//        delete piece;
+//    }
+//    foreach(Piece * piece, whiteTeam){
+//        delete piece;
+//    }
+//    //delete goFrom;
+//    foreach (Cell * cell, cells) {
+//        delete cell;
+//    }
+//    delete scene;
+//    Gameover * window = new Gameover(turn);
+//    window->show();
+//    //delete this;
 }
 
