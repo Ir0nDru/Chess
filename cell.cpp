@@ -53,14 +53,8 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (!waitingTurn){
         //get cell with piece
-        //TODO: add check for which side piece is on
         if (this->piece != NULL){
             if (game->getTurn() == this->piece->getTeam()){
-    //        QList<QPair<int, int>> possibleMoves = piece->moves();
-    //        qDebug() << "==============================";
-    //        for (int i = 0; i < possibleMoves.length(); i++){
-    //            qDebug() << i << ":" << possibleMoves[i].first << possibleMoves[i].second;
-    //        }
                 game->setSelectedFrom(this);
                 this->highlight();
                 waitingTurn = true;
@@ -92,7 +86,6 @@ void Cell::placeFigure(Piece *p)
     p->setCoords(x,y);
     p->setPos(cellsize * x + offset, cellsize * y + offset);
     this->piece = p;
-    //this->piece->placeFigure(this->getCoords(), this->getCellSize());
 }
 
 void Cell::replaceFigure()
@@ -102,17 +95,16 @@ void Cell::replaceFigure()
 
 void Cell::removeFigure()
 {
-    //TODO: add memory clearance
-    QList<Piece *> pieces = game->getWhiteTeam() + game->getBlackTeam();
-    if (this->piece->getTeam() == "WHITE"){
-        game->whiteTeam.removeOne(this->piece);
+    if(this->piece){
+        if (this->piece->getTeam() == "WHITE"){
+            game->whiteTeam.removeOne(this->piece);
+        }
+        else{
+            game->blackTeam.removeOne(this->piece);
+        }
+        delete this->piece;
+        this->piece = NULL;
     }
-    else{
-        game->blackTeam.removeOne(this->piece);
-    }
-    delete this->piece;
-    this->piece = NULL;
-    pieces = game->getWhiteTeam() + game->getBlackTeam();
 }
 
 void Cell::highlight()
@@ -125,13 +117,10 @@ void Cell::highlight()
 
 void Cell::lightOff()
 {
-    //qDebug() << getColor();
     if(getColor() == "WHITE"){
-        //isClicked = false;
         setBrush(white);
     }
     else if(getColor() == "BLACK"){
-        //isClicked = false;
         setBrush(black);
     }
 }
@@ -150,7 +139,6 @@ void Cell::move(Cell *cell)
         cell->lightOff();
     }
     this->piece->incTurn();
-    //qDebug() << game->whiteKing->check(game->whiteKing->x, game->whiteKing->y);
 }
 
 bool Cell::hasPiece()
@@ -167,9 +155,7 @@ bool Cell::moveIsPossible() //check if this cell's coords are in possible moveme
 {
     bool possibility = false;
     QList<QPair<int, int> > possibleMoves = game->getSelectedFrom()->piece->moves();
-    //qDebug() << "==============================";
     for (int i = 0; i < possibleMoves.length() && !possibility; i++){
-        //qDebug() << possibleMoves[i].first << possibleMoves[i].second;
         if(this->x == possibleMoves[i].first && this->y == possibleMoves[i].second){
             possibility = true;
         }

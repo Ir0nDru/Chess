@@ -30,6 +30,7 @@ public:
     //Little feature or hack that ruines all architecture but program doesn't crush anymore (KLUDGE)
     QList <Piece*> whiteTeam;
     QList <Piece*> blackTeam;
+    QList <Piece*> createTeam(Factory* factory);
     QString getTurn();
     void checkVictory();
     void changeTurn();
@@ -40,6 +41,7 @@ private:
     QString turn;
     QGraphicsTextItem  * turnTable;
     void gameover();
+    void spawnTeams();
 };
 
 #endif // GAME_H

@@ -82,7 +82,7 @@ QList<QPair<int, int> > Pawn::moves()
                 coords.append(temp);
             }
         }
-        foreach(Piece* p, blackTeam){
+        foreach(Piece* p, whiteTeam){
             if(y+1 == p->y && x-1 == p->x){
                 //int temp[] = {p->x,p->y};
                 QPair<int,int> temp;

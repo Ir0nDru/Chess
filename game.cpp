@@ -76,59 +76,7 @@ Game::Game()
         }
     }
     //adding piece
-//    Pawn * pawn = new Pawn("WHITE");
-//    Bishop * bishop = new Bishop("BLACK");
-//    Bishop * b1 = new Bishop("WHITE");
-//    King * king = new King("WHITE");
-//    Queen * queen = new Queen("BLACK");
-//    Knight * knight = new Knight("BLACK");
-//    Rook * rook = new Rook("WHITE");
-//    cells[26]->placeFigure(pawn);
-//    cells[1]->placeFigure(bishop);
-//    cells[2]->placeFigure(b1);
-//    cells[39]->placeFigure(king);
-//    cells[19]->placeFigure(queen);
-//    cells[17]->placeFigure(knight);
-//    cells[60]->placeFigure(rook);
-
-
-//    blackTeam.append(bishop);
-//    blackTeam.append(queen);
-//    blackTeam.append(knight);
-
-//    whiteTeam.append(pawn);
-//    whiteTeam.append(king);
-//    whiteTeam.append(rook);
-//    whiteTeam.append(b1);
-
-
-//    addToScene(pawn);
-//    addToScene(bishop);
-//    addToScene(king);
-//    addToScene(queen);
-//    addToScene(knight);
-//    addToScene(rook);
-//    addToScene(b1);
-
-
-
-    BlackFactory* blackFactory = new BlackFactory;
-    blackTeam = blackFactory->createTeam();
-    for(int i = 0; i < 16; i++){
-        cells[i]->placeFigure(blackTeam.at(i));
-    }
-    WhiteFactory* whiteFactory = new WhiteFactory;
-    whiteTeam = whiteFactory->createTeam();
-    for(int i = 48; i < 64; i++){
-        cells[i]->placeFigure(whiteTeam.at(i-48));
-    }
-
-    foreach (Piece* p, whiteTeam) {
-        addToScene(p);
-    }
-    foreach (Piece* p, blackTeam) {
-        addToScene(p);
-    }
+    spawnTeams();
 }
 
 void Game::addToScene(QGraphicsItem *item)
@@ -161,6 +109,11 @@ QList<Piece *> Game::getBlackTeam()
     return this->blackTeam;
 }
 
+QList<Piece *> Game::createTeam(Factory *factory)
+{
+    return factory->createTeam();
+}
+
 QString Game::getTurn()
 {
     return turn;
@@ -170,8 +123,7 @@ void Game::checkVictory()
 {
     bool hasKing = false;
     foreach(Piece * piece, whiteTeam){
-        qDebug() << piece->type();
-        if (piece->type() == King::Type){
+       if (piece->type() == King::Type){
             hasKing = true;
         }
     }
@@ -182,7 +134,6 @@ void Game::checkVictory()
     }
     hasKing = false;
     foreach(Piece * piece, blackTeam){
-        qDebug() << piece->type();
         if (piece->type() == King::Type){
             hasKing = true;
         }
@@ -208,20 +159,31 @@ void Game::changeTurn()
 
 void Game::gameover()
 {
-    //piece of shit
-//    foreach(Piece * piece, blackTeam){
-//        delete piece;
-//    }
-//    foreach(Piece * piece, whiteTeam){
-//        delete piece;
-//    }
-//    //delete goFrom;
-//    foreach (Cell * cell, cells) {
-//        delete cell;
-//    }
-//    delete scene;
-//    Gameover * window = new Gameover(turn);
-//    window->show();
-//    //delete this;
+    foreach (Cell * cell, cells){
+        cell->removeFigure();
+    }
+    turn = "WHITE";
+    spawnTeams();
+}
+
+void Game::spawnTeams()
+{
+    BlackFactory* blackFactory = new BlackFactory;
+    blackTeam = createTeam(blackFactory);
+    for(int i = 0; i < 16; i++){
+        cells[i]->placeFigure(blackTeam.at(i));
+    }
+    WhiteFactory* whiteFactory = new WhiteFactory;
+    whiteTeam = createTeam(whiteFactory);
+    for(int i = 48; i < 64; i++){
+        cells[i]->placeFigure(whiteTeam.at(i-48));
+    }
+
+    foreach (Piece* p, whiteTeam) {
+        addToScene(p);
+    }
+    foreach (Piece* p, blackTeam) {
+        addToScene(p);
+    }
 }
 
