@@ -54,7 +54,12 @@ QList<QPair<int, int> > King::moves()
     return coords;
 }
 
-bool King::check()
+int King::type() const
+{
+    return Type;
+}
+
+bool King::check(int X, int Y)
 {
     bool check = false;
     QList<Piece *> pieces;
@@ -69,7 +74,7 @@ bool King::check()
     foreach(Piece * piece, pieces){
         QList<QPair<int, int>> enemyMoves = piece->moves();
         for (int i = 0; i < enemyMoves.length(); i++){
-            if (x == enemyMoves[i].first && y == enemyMoves[i].second){
+            if (X == enemyMoves[i].first && Y == enemyMoves[i].second){
                 check = true;
             }
         }

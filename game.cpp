@@ -8,19 +8,20 @@ Game::Game()
 {
     goFrom = NULL;
     goTo = NULL;
+    turn = "WHITE";
 
     setFocusPolicy(Qt::StrongFocus);
-    setFixedSize(900, 900);
+    setFixedSize(740, 740);
 
     scene = new QGraphicsScene(this);
-    scene->setSceneRect(0, 0, 900, 900);
+    scene->setSceneRect(0, 0, 740, 740);
     //Draw field
     QGraphicsRectItem * borderOuter = new QGraphicsRectItem();
     QGraphicsRectItem * borderInner = new QGraphicsRectItem();
 
-    borderOuter->setRect(0,0,900,900);
+    borderOuter->setRect(0,0,740,740);
     borderOuter->setBrush(QBrush(QColor::fromRgb(55, 20, 10)));
-    borderInner->setRect(50,50,800,800);
+    borderInner->setRect(50,50,640,640);
     borderInner->setPen(QPen(QColor::fromRgb(85, 50, 40)));
     borderInner->setBrush(QBrush(QColor::fromRgb(85, 50, 40)));
 
@@ -34,7 +35,8 @@ Game::Game()
         letters[i]->setFont(QFont("times", 20));
         letters[i]->setDefaultTextColor(QColor::fromRgb(180, 170, 0));
         letters[i]->setPlainText(QString(letter[i]));
-        letters[i]->setPos(85 + 100*i, 855);
+        letters[i]->setPos(75 + 80*i, 695);
+        letters[i]->setZValue(1);
         addToScene(letters[i]);
     }
 
@@ -44,11 +46,16 @@ Game::Game()
         nums[i]->setFont(QFont("times", 20));
         nums[i]->setDefaultTextColor(QColor::fromRgb(180, 170, 0));
         nums[i]->setPlainText(QString::number(8 - i));
-        nums[i]->setPos(15, 80 + 100*i);
+        nums[i]->setPos(15, 70 + 80*i);
         addToScene(nums[i]);
     }
 
-
+    turnTable = new QGraphicsTextItem();
+    turnTable->setFont(QFont("times", 20));
+    turnTable->setDefaultTextColor(QColor::fromRgb(255, 255, 255));
+    turnTable->setPlainText(QString("TURN: " + turn));
+    turnTable->setPos(50,10);
+    addToScene(turnTable);
 
     setScene(scene);
 
@@ -144,5 +151,47 @@ QList<Piece *> Game::getWhiteTeam()
 QList<Piece *> Game::getBlackTeam()
 {
     return this->blackTeam;
+}
+
+QString Game::getTurn()
+{
+    return turn;
+}
+
+void Game::checkVictory()
+{
+    bool hasKing = false;
+    foreach(Piece * piece, whiteTeam){
+        qDebug() << piece->type();
+        if (piece->type() == King::Type){
+            hasKing = true;
+        }
+    }
+    if(!hasKing){
+        qDebug() << "white lost";
+    }
+    hasKing = false;
+    foreach(Piece * piece, blackTeam){
+        qDebug() << piece->type();
+        if (piece->type() == King::Type){
+            hasKing = true;
+        }
+    }
+    if(!hasKing){
+        qDebug() << "black lost";
+    }
+}
+
+void Game::changeTurn()
+{
+    if (turn == "WHITE"){
+        turn = "BLACK";
+        turnTable->setDefaultTextColor(QColor::fromRgb(0, 0, 0));
+    }
+    else{
+        turn = "WHITE";
+        turnTable->setDefaultTextColor(QColor::fromRgb(255, 255, 255));
+    }
+    turnTable->setPlainText(QString("TURN: " + turn));
 }
 

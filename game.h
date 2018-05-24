@@ -11,6 +11,7 @@
 #include <king.h>
 #include <queen.h>
 #include <rook.h>
+#include <QDebug>
 
 class Game: public QGraphicsView
 {
@@ -28,11 +29,16 @@ public:
     //Little feature or hack that ruines all architecture but program doesn't crush anymore (KLUDGE)
     QList <Piece*> whiteTeam;
     QList <Piece*> blackTeam;
+    QString getTurn();
+    void checkVictory();
+    void changeTurn();
 private:
     QGraphicsScene * scene;
     QList <Cell *> cells;
     Cell * goFrom;
     Cell * goTo;
+    QString turn;
+    QGraphicsTextItem  * turnTable;
 };
 
 #endif // GAME_H

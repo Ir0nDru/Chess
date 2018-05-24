@@ -26,8 +26,8 @@ public:
 private:
     int x;
     int y;
-    qreal cellsize = 100;
-    qreal offset = 70;
+    qreal cellsize = 80;
+    qreal offset = 60;
     QString color;
     QColor white = QColor::fromRgb(240,200,200);
     QColor black = QColor::fromRgb(80,20,20);

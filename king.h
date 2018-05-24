@@ -6,10 +6,12 @@
 class King : public Piece
 {
 public:
+    enum { Type = UserType + 1 };
     King(QString team);
     ~King();
     QList<QPair<int, int>> moves();
-    bool check();
+    virtual int type() const;
+    bool check(int X, int Y);
 private:
     void setup();
     bool freeToMove(int x, int y, QList<Piece *> pieces);
