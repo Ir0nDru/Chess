@@ -16,7 +16,7 @@ Rook::~Rook()
 QList<QPair<int, int> > Rook::moves()
 {
     QList<Piece*> pieces = game->getBlackTeam() + game->getWhiteTeam();
-    QList<QPair<int, int>> coords;
+    QList<QPair<int, int> > coords;
     bool isClear = true;
     for(int i = x+1; i <= 7 && isClear; i++){
         foreach(Piece* p, pieces){

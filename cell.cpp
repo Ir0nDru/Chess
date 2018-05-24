@@ -166,7 +166,7 @@ bool Cell::hasPiece()
 bool Cell::moveIsPossible() //check if this cell's coords are in possible movement coords
 {
     bool possibility = false;
-    QList<QPair<int, int>> possibleMoves = game->getSelectedFrom()->piece->moves();
+    QList<QPair<int, int> > possibleMoves = game->getSelectedFrom()->piece->moves();
     //qDebug() << "==============================";
     for (int i = 0; i < possibleMoves.length() && !possibility; i++){
         //qDebug() << possibleMoves[i].first << possibleMoves[i].second;

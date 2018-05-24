@@ -16,7 +16,7 @@ Queen::~Queen()
 QList<QPair<int, int> > Queen::moves()
 {
     QList<Piece*> pieces = game->getBlackTeam() + game->getWhiteTeam();
-    QList<QPair<int, int>> coords;
+    QList<QPair<int, int> > coords;
     bool isClear = true;
     for(int i = x+1; i <= 7 && y-1-(i-(x+1)) >= 0 && isClear; i++){
         foreach(Piece* p, pieces){

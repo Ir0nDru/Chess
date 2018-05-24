@@ -17,7 +17,7 @@ QList<QPair<int, int> > Pawn::moves()
 {
     QList<Piece*> whiteTeam = game->getWhiteTeam();
     QList<Piece*> blackTeam = game->getBlackTeam();
-    QList<QPair<int, int>> coords;
+    QList<QPair<int, int> > coords;
     int k;
     if(turn == 0){
         k = 2;

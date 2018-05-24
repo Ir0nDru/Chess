@@ -9,7 +9,7 @@ public:
     enum { Type = UserType + 1 };
     King(QString team);
     ~King();
-    QList<QPair<int, int>> moves();
+    QList<QPair<int, int> > moves();
     virtual int type() const;
     bool check(int X, int Y);
 private:

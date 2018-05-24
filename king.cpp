@@ -16,7 +16,7 @@ King::~King()
 QList<QPair<int, int> > King::moves()
 {
     QList<Piece*> pieces;
-    QList<QPair<int, int>> coords;
+    QList<QPair<int, int> > coords;
 
     if (this->getTeam() == "WHITE"){
         pieces = game->getWhiteTeam();
@@ -72,7 +72,7 @@ bool King::check(int X, int Y)
     }
 
     foreach(Piece * piece, pieces){
-        QList<QPair<int, int>> enemyMoves = piece->moves();
+        QList<QPair<int, int> > enemyMoves = piece->moves();
         for (int i = 0; i < enemyMoves.length(); i++){
             if (X == enemyMoves[i].first && Y == enemyMoves[i].second){
                 check = true;

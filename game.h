@@ -13,6 +13,8 @@
 #include <rook.h>
 #include <gameover.h>
 #include <QDebug>
+#include "whitefactory.h"
+#include "blackfactory.h"
 
 class Game: public QGraphicsView
 {

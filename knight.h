@@ -8,7 +8,7 @@ class Knight : public Piece
 public:
     Knight(QString team);
     ~Knight();
-    QList<QPair<int, int>> moves();
+    QList<QPair<int, int> > moves();
 private:
     void setup();
     bool freeToMove(int x, int y, QList<Piece*> pieces);

@@ -9,7 +9,7 @@ public:
     Piece * giveIt();
     Piece(QString team);
     QString getTeam();
-    virtual QList<QPair<int, int>> moves() = 0;
+    virtual QList<QPair<int, int> > moves() = 0;
     void setCoords(int x,int y);
     void incTurn();
     int x;

@@ -16,7 +16,7 @@ Knight::~Knight()
 QList<QPair<int, int> > Knight::moves()
 {
     QList<Piece*> pieces;
-    QList<QPair<int, int>> coords;
+    QList<QPair<int, int> > coords;
 
     if (this->getTeam() == "WHITE"){
         pieces = game->getWhiteTeam();

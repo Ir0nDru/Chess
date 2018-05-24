@@ -24,7 +24,10 @@ SOURCES += main.cpp\
     bishop.cpp \
     king.cpp \
     queen.cpp \
-    gameover.cpp
+    gameover.cpp \
+    factory.cpp \
+    whitefactory.cpp \
+    blackfactory.cpp
 
 HEADERS  += mainwindow.h \
     piece.h \
@@ -37,7 +40,10 @@ HEADERS  += mainwindow.h \
     bishop.h \
     king.h \
     queen.h \
-    gameover.h
+    gameover.h \
+    factory.h \
+    whitefactory.h \
+    blackfactory.h
 
 FORMS    += mainwindow.ui \
     gameover.ui
