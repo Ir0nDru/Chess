@@ -114,6 +114,21 @@ QList<Piece *> Game::createTeam(Factory *factory)
     return factory->createTeam();
 }
 
+QList<Cell *> Game::getCells()
+{
+    return cells;
+}
+
+Cell *Game::getCell(int i)
+{
+    return this->cells[i];
+}
+
+Cell *Game::getGoFrom()
+{
+    return goFrom;
+}
+
 QString Game::getTurn()
 {
     return turn;
@@ -121,6 +136,9 @@ QString Game::getTurn()
 
 void Game::checkVictory()
 {
+    foreach (Cell* cell, cells) {
+        cell->lightOff();
+    }
     bool hasKing = false;
     foreach(Piece * piece, whiteTeam){
        if (piece->type() == King::Type){

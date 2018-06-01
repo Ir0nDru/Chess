@@ -22,6 +22,11 @@ void Piece::incTurn()
     this->turn++;
 }
 
+int Piece::getTurn()
+{
+    return turn;
+}
+
 
 Piece *Piece::giveIt()
 {

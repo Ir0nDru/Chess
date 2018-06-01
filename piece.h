@@ -12,6 +12,7 @@ public:
     virtual QList<QPair<int, int> > moves() = 0;
     void setCoords(int x,int y);
     void incTurn();
+    int getTurn();
     int x;
     int y;
 private:

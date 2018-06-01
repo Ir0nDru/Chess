@@ -26,6 +26,12 @@ QList<QPair<int, int> > King::moves()
     }
 
 
+//    if (this->getTurn() == 0 && game->getCell(63)->getPiece()->getTurn() == 0){
+//        if(freeToMove(5, 7, pieces) && freeToMove(5, 7, pieces)){
+//            coords.append(QPair<int, int>(6,7));
+//        }
+//    }
+
     if (freeToMove(this->x, this->y-1, pieces)){
         coords.append(QPair<int, int>(this->x, this->y-1));
     }
@@ -50,7 +56,32 @@ QList<QPair<int, int> > King::moves()
     if (freeToMove(this->x-1, this->y-1, pieces)){
         coords.append(QPair<int, int>(this->x-1, this->y-1));
     }
+//    if (this->getTeam() == "WHITE"){
+//        if (this->getTurn() == 0 && game->getCell(63)->getPiece()->getTurn() == 0){
+//            bool isEmptyBetwen = true;
+//            for (int i = 60; i <= 62 && isEmptyBetwen; i++){
+//                if(game->getCell(i)->getPiece() != NULL){
+//                    isEmptyBetwen = false;
+//                }
+//        }
+//            if(isEmptyBetwen){
+//                coords.append(QPair<int, int>(7,7));
+//            }
 
+//        if (game->getCell(56)->getPiece()->getTurn() == 0){
+//             coords.append(QPair<int, int>(0,7));
+//        }
+//    }
+//    if (this->getTeam() == "BLACK"){
+//        if (game->getCell(7)->getPiece()->getTurn() == 0){
+//             coords.append(QPair<int, int>(7,0));
+//        }
+
+//        if (game->getCell(0)->getPiece()->getTurn() == 0){
+//             coords.append(QPair<int, int>(0,0));
+//        }
+//    }
+//  }
     return coords;
 }
 

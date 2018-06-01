@@ -17,8 +17,8 @@ QList<Piece *> WhiteFactory::createTeam()
     team.append(createRook());
     team.append(createKnight());
     team.append(createBishop());
-    team.append(createKing());
     team.append(createQueen());
+    team.append(createKing());
     team.append(createBishop());
     team.append(createKnight());
     team.append(createRook());

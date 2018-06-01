@@ -1,6 +1,8 @@
 #include "cell.h"
 #include "game.h"
 #include <QDebug>
+#include <typeinfo>
+#include <iostream>
 
 extern Game * game;
 Cell::Cell()
@@ -19,6 +21,8 @@ Cell::Cell(int posX, int posY, QString cellColor, qreal startSpaceX, qreal start
 {
     x = posX;
     y = posY;
+    coords.first = x;
+    coords.second = y;
     piece = NULL;
     isClicked = false;
     setRect(startSpaceX + cellsize * posX, startSpaceY + cellsize * posY, cellsize, cellsize);
@@ -39,6 +43,11 @@ int *Cell::getCoords()
     return temp;
 }
 
+QPair<int, int> Cell::getCoord()
+{
+    return coords;
+}
+
 qreal Cell::getCellSize()
 {
     return cellsize;
@@ -51,13 +60,36 @@ QString Cell::getColor()
 
 void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+
     if (!waitingTurn){
         //get cell with piece
         if (this->piece != NULL){
             if (game->getTurn() == this->piece->getTeam()){
                 game->setSelectedFrom(this);
-                this->highlight();
+                //castling();
+                this->setBrush(currentCell);
+                QList<QPair<int, int> > moves = this->piece->moves();
+                QPair<int,int> coord;
+                foreach (coord, moves){
+                    for(int i = 0; i < 64; i++){
+                        qDebug()<<game->getCell(i)->getCoord();
+                        if(coord == game->getCell(i)->getCoord()){
+                            toBrush.append(game->getCell(i));
+                        }
+                    }
+                }
+                foreach (Cell* cell, toBrush) {
+                    if(cell->getPiece()){
+                        if(cell->getPiece()->getTeam() != this->getPiece()->getTeam()){
+                            cell->setBrush(attacked);
+                        }
+                    }
+                    else{
+                        cell->highlight();
+                    }
+                }
                 waitingTurn = true;
+
             }
         }
     }
@@ -66,6 +98,9 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
         if (game->getSelectedFrom() == this){
             game->setSelectedFrom(NULL);
             this->lightOff();
+            foreach (Cell* cell, toBrush) {
+                cell->lightOff();
+            }
             waitingTurn = false;
         }
         //else move
@@ -79,8 +114,8 @@ void Cell::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
         }
     }
-}
 
+}
 void Cell::placeFigure(Piece *p)
 {
     p->setCoords(x,y);
@@ -109,9 +144,12 @@ void Cell::removeFigure()
 
 void Cell::highlight()
 {
-    if(color == "BLACK" || color == "WHITE"){
+    if(color == "BLACK"){
         //isClicked = true;
-        setBrush(pressed);
+        setBrush(possibleMovesAtBlack);
+    }
+    else{
+        setBrush(possibleMovesAtWhite);
     }
 }
 
@@ -127,6 +165,16 @@ void Cell::lightOff()
 
 void Cell::move(Cell *cell)
 {
+//    if(this->getCoord() == QPair<int, int>(7,7) && this->getPiece()->getTurn() == 0){
+//        if(cell->getCoord() == QPair<int, int>(4,7) && cell->getPiece()->getTurn() == 0){
+//            if(game->getCell(62)->getPiece() == NULL && game->getCell(61)->getPiece() == NULL){
+//                game->getCell(62)->placeFigure(cell->getPiece());
+//                game->getCell(61)->placeFigure(this->getPiece());
+//                cell->replaceFigure();
+//                this->replaceFigure();
+//            }
+//        }
+//    }
     if (this->hasPiece()){
         this->removeFigure();
         this->placeFigure(cell->piece);
@@ -140,6 +188,12 @@ void Cell::move(Cell *cell)
     }
     this->piece->incTurn();
 }
+
+//void Cell::castling()
+//{
+//   if(game->getGoFrom()->getCoord() == QPair<int, int>(4,7))
+//       qDebug()<<"kek";
+//}
 
 bool Cell::hasPiece()
 {
@@ -161,5 +215,15 @@ bool Cell::moveIsPossible() //check if this cell's coords are in possible moveme
         }
     }
     return possibility;
+}
+
+void Cell::setColor(QColor color)
+{
+    setBrush(color);
+}
+
+Piece *Cell::getPiece()
+{
+    return piece;
 }
 

@@ -31,6 +31,9 @@ public:
     QList <Piece*> whiteTeam;
     QList <Piece*> blackTeam;
     QList <Piece*> createTeam(Factory* factory);
+    QList <Cell *>  getCells();
+    Cell* getCell(int);
+    Cell * getGoFrom();
     QString getTurn();
     void checkVictory();
     void changeTurn();
